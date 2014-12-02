@@ -7,17 +7,19 @@ public class QuizDriver extends JFrame implements ActionListener
 {
 	JMenu playMenu;
 	JMenu adminMenu;
-	Container cPane;
+	
 	
 	
 	public static void main(String[] args)
-	{
+	{	
 		QuizDriver runBox = new QuizDriver();
 		runBox.setVisible(true);
+	
 	}//end main	
 		
 	public QuizDriver()
 	{
+		
 		setTitle("Networking Quiz");
 		setSize(500,500);
 		setLocation(300,500);
@@ -57,6 +59,7 @@ public class QuizDriver extends JFrame implements ActionListener
 		{
 			JOptionPane.showMessageDialog(null,"you picked to add a question","test response",JOptionPane.PLAIN_MESSAGE);
 			addQuestion();
+			
 		}
 		else if(menuName.equals("Edit Question"))
 		{
@@ -109,13 +112,16 @@ public class QuizDriver extends JFrame implements ActionListener
 	}// end createAdminMenu method 
 	
 	
-	private Question addQuestion()
+	private JPanel addQuestion()
 	{
 		JLabel question,a,b,c,d,e,f;
 		JTextField txtQues,txtA,txtB,txtC,txtD,txtE,txtF;
 		JButton btnAdd;
 		JPanel p1;
 		GridLayout grid;
+		QuizDriver runBox2 = new QuizDriver();
+		
+		runBox2.setVisible(true);
 		
 		question = new JLabel("Enter Question:");
 		a= new JLabel("Option A");
@@ -139,11 +145,39 @@ public class QuizDriver extends JFrame implements ActionListener
 		grid = new GridLayout(4,2);
 		FlowLayout f1 = new FlowLayout();
 		
+		p1.setLayout(grid);
+		
+		p1.add(question);
+		p1.add(txtQues);
+		
+		p1.add(a);
+		p1.add(txtA);
+		
+		p1.add(b);
+		p1.add(txtB);
+		
+		p1.add(c);
+		p1.add(txtC);
+		
+		p1.add(d);
+		p1.add(txtD);
+		
+		p1.add(e);
+		p1.add(txtE);
+		
+		p1.add(f);
+		p1.add(txtF);
+		
+		p1.add(btnAdd);
+		
+	//	cPane.add(f1);
+      runBox2.add(p1);
+		
+		return p1;
 		
 		
 		
-		
-	}
+	}//end addQuestion method
 		
 	
 }//end class

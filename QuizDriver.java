@@ -7,12 +7,12 @@ public class QuizDriver extends JFrame implements ActionListener
 {
 	JMenu playMenu;
 	JMenu adminMenu;
-	
+	static QuizDriver runBox;
 	
 	
 	public static void main(String[] args)
 	{	
-		QuizDriver runBox = new QuizDriver();
+		runBox = new QuizDriver();
 		runBox.setVisible(true);
 	
 	}//end main	
@@ -112,16 +112,16 @@ public class QuizDriver extends JFrame implements ActionListener
 	}// end createAdminMenu method 
 	
 	
-	private JPanel addQuestion()
+	private void addQuestion()
 	{
 		JLabel question,a,b,c,d,e,f;
 		JTextField txtQues,txtA,txtB,txtC,txtD,txtE,txtF;
 		JButton btnAdd;
 		JPanel p1;
 		GridLayout grid;
-		QuizDriver runBox2 = new QuizDriver();
+		//QuizDriver runBox2 = new QuizDriver();
 		
-		runBox2.setVisible(true);
+		//runBox2.setVisible(true);
 		
 		question = new JLabel("Enter Question:");
 		a= new JLabel("Option A");
@@ -171,9 +171,9 @@ public class QuizDriver extends JFrame implements ActionListener
 		p1.add(btnAdd);
 		
 	//	cPane.add(f1);
-      runBox2.add(p1);
+      runBox.add(p1);
 		
-		return p1;
+	//	return p1;
 		
 		
 		

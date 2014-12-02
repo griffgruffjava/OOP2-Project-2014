@@ -19,6 +19,12 @@ public class Question implements Serializable
 		setAns(answers);
 	}
 	
+	public Question(String question,ArrayList answers)
+	{
+		setQuestion(question);
+		setAns(answers);
+	}
+	
 	
 	//mutator methods
 	

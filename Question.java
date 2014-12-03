@@ -19,7 +19,7 @@ public class Question implements Serializable
 		setAns(answers);
 	}
 	
-	public Question(String question,ArrayList answers)
+	public Question(String question,ArrayList<Answer> answers)
 	{
 		setQuestion(question);
 		setAns(answers);
@@ -35,8 +35,9 @@ public class Question implements Serializable
 	
 	public void setAns(ArrayList answers)
 	{
-		Answer ans = new Answer("is this working",true);
-		answers.add(ans);
+		//Answer ans = new Answer("is this working",true);
+		//answers.add(ans);
+		this.answers=answers;
 	}
 	
 	//accessor methods
@@ -57,11 +58,21 @@ public class Question implements Serializable
 	public String toString()
 	{
 		char letter='@';
-		String output="Question: " + getQuestion();
+		
+		String output = "Question: " + getQuestion();
+		
+		//Iterator<Answer> it = answers.iterator();
+		
+/*		while(it.hasNext())
+		{
+			letter++;
+			output+= (char)(letter)+ ".  " + a.toString() + "\n";
+		}*/
 		
 		for(Answer a: answers)
 		{
-			output+= (char)(letter+1)+ ".  "+a.toString()+"\n";
+			letter++;
+			output+= (char)(letter)+ ".  " + a.toString() + "\n";
 			
 		}
 		

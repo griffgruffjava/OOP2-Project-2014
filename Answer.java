@@ -1,6 +1,6 @@
+import java.io.*;
 
-
-public class Answer
+public class Answer implements Serializable
 {
 	//attributes
 	private String answer;

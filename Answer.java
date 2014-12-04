@@ -46,11 +46,20 @@ public class Answer
 	}
 	
 	
-	//to String
+	//to String with t/f
+	
+	public String toStringTF()
+	{
+		String output = getAnswer()+"\t\t"+getIsCorrect();
+		
+		return output;
+	}
+	
+	//to String with t/f
 	
 	public String toString()
 	{
-		String output = getAnswer()+"\t\t"+getIsCorrect();
+		String output = getAnswer();
 		
 		return output;
 	}

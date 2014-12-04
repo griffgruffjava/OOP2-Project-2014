@@ -10,6 +10,7 @@ public class Question implements Serializable
 	
 	private String question;
 	private ArrayList<Answer> answers;
+	private String answerKey="";
 	
 	//constructor
 	
@@ -17,12 +18,14 @@ public class Question implements Serializable
 	{
 		setQuestion(question);
 		setAns(answers);
+		setKey(answerKey);
 	}
 	
 	public Question(String question,ArrayList<Answer> answers)
 	{
 		setQuestion(question);
 		setAns(answers);
+		setKey(answerKey);
 	}
 	
 	
@@ -40,6 +43,11 @@ public class Question implements Serializable
 		this.answers=answers;
 	}
 	
+	public void setKey(String answerKey)
+	{
+		this.answerKey=answerKey;
+	}
+	
 	//accessor methods
 	
 	public String getQuestion()
@@ -52,30 +60,60 @@ public class Question implements Serializable
 		return answers;
 	}
 	
+	public String getKey()
+	{
+		char letter='@';
+		for(Answer a: answers)
+		{
+			letter++;
+			if(a.getIsCorrect()==true)
+				answerKey+=letter;	
+		}
+		
+		return answerKey;
+		
+	}
 	
-	//toString Method
+	
+	//toString Method- no t/f
 	
 	public String toString()
 	{
 		char letter='@';
 		
-		String output = "Question: " + getQuestion();
-		
-		//Iterator<Answer> it = answers.iterator();
-		
-/*		while(it.hasNext())
-		{
-			letter++;
-			output+= (char)(letter)+ ".  " + a.toString() + "\n";
-		}*/
-		
+		//adds question to output
+		String output = "Question: " + getQuestion()+"?\n\n";
+
+		//loop to add answers to string output
 		for(Answer a: answers)
 		{
 			letter++;
 			output+= (char)(letter)+ ".  " + a.toString() + "\n";
 			
-		}
-		
+		}//end loop
+	//	letter='@';    did not work
 		return output;
-	}
+		
+	}//end toString
+	
+	//toStringFull method with t/f
+	
+	public String toStringFull()
+	{
+		char letter='@';
+		
+		//adds question to output
+		String output = "Question: " + getQuestion()+"?\n\n";
+
+		//loop to add answers to string output
+		for(Answer a: answers)
+		{
+			letter++;
+			output+= (char)(letter)+ ".  " + a.toStringTF() + "\n";
+			
+		}//end loop
+	//	letter='@';    did not work
+		return output;
+		
+	}//end toStringFull
 } 

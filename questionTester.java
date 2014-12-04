@@ -9,18 +9,20 @@ public class questionTester
 	{
 		int i=0;
 		boolean isCorrect,addMore=true;
-		String answer="start", question, isCorrectString, addMoreString;
+		String answer="start", question, isCorrectString, addMoreString, choice, answerKey;
 		ArrayList<Answer> answers;
 		ArrayList<Question> questions;
 		Answer ans;
 		Question q1;
 		
 		questions = new ArrayList();
-		answers = new ArrayList();
+	//	answers = new ArrayList();
 		
+		
+		//to populate questions 
 		while(addMore==true)
 		{
-		
+			answers = new ArrayList();
 			question=JOptionPane.showInputDialog("What is the question?");
 		
 		
@@ -51,7 +53,7 @@ public class questionTester
 			answer="temp";
 			
 			q1 = new Question(question,answers);
-			System.out.println(q1.toString());
+			System.out.println(q1.toStringFull());
 		/*	q1 = new Question();
 			q1.setQuestion(question);
 			q1.setAns(answers);	*/
@@ -74,10 +76,56 @@ public class questionTester
 				
 		}//end of outer loop for making whole questions
 		
+		//staring test quiz
+		int n=0;
+		double totalRight=0,totalQuestion=0;
 		
+		for(Question q: questions)
+		{
+			q1=questions.get(n);
+			answerKey=q1.getKey();
+			
+			choice=JOptionPane.showInputDialog(q1.toString()+"\n\nYour Answer");
+			
+			totalRight+=scoreAnswers(answerKey,choice);
+			totalQuestion++;	
+			n++;	
+		}
 		
-		
+		JOptionPane.showMessageDialog(null,"You scored " + ((totalRight/totalQuestion)*100) + "% on this quiz","Quiz Results",JOptionPane.INFORMATION_MESSAGE);
 		
 	} //end main
+	
+	public static double scoreAnswers(String key,String choices)
+	{
+		int outOf=key.length();
+		double questionScore=0,score=0;
+		char pick;
+		
+		if(choices.length()>key.length())
+		{
+			return questionScore;
+		}
+		else
+		{	
+			for(int i=0;i<choices.length();i++)
+			{
+				pick=choices.charAt(i);
+				
+				for(int n=0;n<key.length();n++)
+				{
+					if(pick==key.charAt(n))
+						score++;
+				}
+			}
+			
+			questionScore=(score/outOf);
+		}//end if/else
+		
+		return questionScore;
+				
+	}//end method
+	
+	
 	
 }//end class

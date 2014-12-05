@@ -9,12 +9,14 @@ import java.io.*;
 
 public class QuizDriver4 extends JFrame implements ActionListener
 {
+	JPanel kingPanel;
+	JPanel blank;
+	JPanel questionPanel;
 	JMenu playMenu;
 	JMenu adminMenu;
-	JPanel kingPanel;
 	CardLayout c1 = new CardLayout();
 	Container cPane;
-	static QuizDriver4 runBox1;
+//	static QuizDriver4 runBox1;
 	int i=0;
 	JLabel questionLabel,aLabel,bLabel,cLabel,dLabel,eLabel,fLabel;
 	JTextField questionField,aField,bField,cField,dField,eField,fField;
@@ -31,9 +33,8 @@ public class QuizDriver4 extends JFrame implements ActionListener
 	
 	public static void main(String[] args)
 	{	
-		runBox1 = new QuizDriver4("demo frame");
+		QuizDriver4 runBox1 = new QuizDriver4();
 		runBox1.setVisible(true);
-		CardLayout c1 = new CardLayout();
 	}//end main	
 		
 	public QuizDriver4()
@@ -56,9 +57,11 @@ public class QuizDriver4 extends JFrame implements ActionListener
 		menuBar.add(adminMenu);
 		
 		
+	//	CardLayout c1 = new CardLayout();
+		kingPanel= new JPanel();
 		kingPanel.setLayout(c1);
-		JPanel questionPanel = new JPanel();
-		questionPanel.setBackground(Color.Blue);
+		questionPanel = new JPanel();
+		questionPanel.setBackground(Color.BLUE);
 		questionLabel = new JLabel("Please enter the question");
 		questionField = new JTextField(null,20);
 		aLabel = new JLabel("Option A");
@@ -72,12 +75,14 @@ public class QuizDriver4 extends JFrame implements ActionListener
 		questionPanel.add(bLabel);
 		questionPanel.add(bField);
 		
-		JPanel blank = new JPanel();
-//		blank.setBackground(Color.Green);
+		blank = new JPanel();
+		blank.add(new JButton("click here"));
+		blank.setBackground(Color.GREEN);
 		
-		JPanel kingPanel = new JPanel();
-		kingPanel.add(questionPanel, "1");
+//		JPanel kingPanel = new JPanel();
 		kingPanel.add(blank, "2");
+		kingPanel.add(questionPanel, "1");
+	//	kingPanel.add(blank, "2");
 		
 	//	card1.add(new JTextField("TextField",20));
 	//	questionField = new JTextField(null,20);
@@ -92,7 +97,7 @@ public class QuizDriver4 extends JFrame implements ActionListener
 		
 		
 		
-		c1.show(kingPanel,"blank");
+//	c1.show(kingPanel,"blank");
 		
 		this.add(kingPanel);
 		
@@ -489,9 +494,11 @@ public class QuizDriver4 extends JFrame implements ActionListener
 	//	p1.add(questionField);
 		cPane.add(kingPanel, BorderLayout.PAGE_START);*/
 		
-		CardLayout c1 = (CardLayout)(kingPanel.getLayout());
+	//	CardLayout c1 = (CardLayout)(kingPanel.getLayout());
 		
-		c1.show(kingPanel,"add question box");
+		c1.show(kingPanel,"1");
+		
+	//	kingPanel.add(questionPanel, "1");
 		
 	}//END OF TESTING METHOD
 	

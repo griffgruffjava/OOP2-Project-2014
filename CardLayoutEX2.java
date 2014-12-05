@@ -59,7 +59,7 @@ public class CardLayoutEX2 extends JFrame implements ActionListener {
         
         
     }
-    
+   
        
     
     public void actionPerformed(ActionEvent evt) {	
@@ -78,7 +78,7 @@ public class CardLayoutEX2 extends JFrame implements ActionListener {
        cl.show(cards, "Card with JButtons");
        
        } //end if
-    }
+    } 
     
    
 }

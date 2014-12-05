@@ -11,8 +11,10 @@ public class QuizDriver4 extends JFrame implements ActionListener
 {
 	JMenu playMenu;
 	JMenu adminMenu;
+	JPanel kingPanel;
+	CardLayout c1 = new CardLayout();
 	Container cPane;
-	static QuizDriver4 runBox;
+	static QuizDriver4 runBox1;
 	int i=0;
 	JLabel questionLabel,aLabel,bLabel,cLabel,dLabel,eLabel,fLabel;
 	JTextField questionField,aField,bField,cField,dField,eField,fField;
@@ -21,6 +23,7 @@ public class QuizDriver4 extends JFrame implements ActionListener
 	ArrayList<Answer> answers;
 	Answer ans;
 	Question q1;
+	
 		
 	
 	ArrayList<Question> questions= new ArrayList();
@@ -28,9 +31,9 @@ public class QuizDriver4 extends JFrame implements ActionListener
 	
 	public static void main(String[] args)
 	{	
-		runBox = new QuizDriver4();
-		runBox.setVisible(true);
-	
+		runBox1 = new QuizDriver4("demo frame");
+		runBox1.setVisible(true);
+		CardLayout c1 = new CardLayout();
 	}//end main	
 		
 	public QuizDriver4()
@@ -38,12 +41,12 @@ public class QuizDriver4 extends JFrame implements ActionListener
 		
 		setTitle("Networking Quiz");
 		setSize(500,500);
-		setLocation(300,500);
+		setLocation(500,200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		cPane = getContentPane();
-		cPane.setLayout(null);
-		
+	//	cPaneInAss.setLayout(null);
+	//	cPane.setBackground (Color.blue); test to see if cPane was working
 		createPlayMenu();
 		createAdminMenu();
 		
@@ -52,14 +55,60 @@ public class QuizDriver4 extends JFrame implements ActionListener
 		menuBar.add(playMenu);
 		menuBar.add(adminMenu);
 		
-		questionLabel = new JLabel("This is a test");
-		questionField = new JTextField();
+		
+		kingPanel.setLayout(c1);
+		JPanel questionPanel = new JPanel();
+		questionPanel.setBackground(Color.Blue);
+		questionLabel = new JLabel("Please enter the question");
+		questionField = new JTextField(null,20);
+		aLabel = new JLabel("Option A");
+		aField = new JTextField(null,20);
+		bLabel = new JLabel("Option B");
+		bField = new JTextField(null,20);
+		questionPanel.add(questionLabel);
+		questionPanel.add(questionField);
+		questionPanel.add(aLabel);
+		questionPanel.add(aField);
+		questionPanel.add(bLabel);
+		questionPanel.add(bField);
+		
+		JPanel blank = new JPanel();
+//		blank.setBackground(Color.Green);
+		
+		JPanel kingPanel = new JPanel();
+		kingPanel.add(questionPanel, "1");
+		kingPanel.add(blank, "2");
+		
+	//	card1.add(new JTextField("TextField",20));
+	//	questionField = new JTextField(null,20);
 	//	questionField.setBounds(110,130,80,40);
 	//	runBox.add(questionLabel);
 	//	runBox.add(questionField);
-		cPane.add(questionLabel);
-		cPane.add(questionField);
+	//	p1.add(questionLabel);
+	//	p1.add(questionField);
+		cPane.add(kingPanel, BorderLayout.PAGE_START);
 		
+		
+		
+		
+		
+		c1.show(kingPanel,"blank");
+		
+		this.add(kingPanel);
+		
+	/*	JPanel card1 = new JPanel();
+		
+		questionLabel = new JLabel("This is a test");
+	//	card1.add(new JTextField("TextField",20));
+		questionField = new JTextField(null,20);
+	//	questionField.setBounds(110,130,80,40);
+	//	runBox.add(questionLabel);
+	//	runBox.add(questionField);
+		card1.add(questionLabel);
+		card1.add(questionField); 
+		cPane.add(card1, BorderLayout.PAGE_START); */
+		
+		 
 	}//end constructor	
 	
 	
@@ -240,17 +289,7 @@ public class QuizDriver4 extends JFrame implements ActionListener
 	}//end of addNewQuestions method	
 	
 	
-	private void testAddingToFrame()
-	{
-		questionLabel = new JLabel("This is a test");
-		questionField = new JTextField();
-	//	questionField.setBounds(110,130,80,40);
-	//	runBox.add(questionLabel);
-	//	runBox.add(questionField);
-		cPane.add(questionLabel);
-		cPane.add(questionField);
-		
-	}
+	
 	
 	private void addFrameQuestions()throws IOException 
 	{
@@ -404,5 +443,56 @@ public class QuizDriver4 extends JFrame implements ActionListener
       	os.writeObject(questions);
       	os.close();
     }
+    
+    private void testAddingToFrame()
+	{
+		
+		/*		FIRST TRY
+		questionLabel = new JLabel("This is a test");
+		questionField = new JTextField();
+	//	questionField.setBounds(110,130,80,40);
+	//	runBox.add(questionLabel);
+	//	runBox.add(questionField);
+		cPane.add(questionLabel);
+		cPane.add(questionField);*/
+		
+		System.out.println("made into test method");
+		//SECOND TRY
+		
+		/*
+		JPanel questionPanel = new JPanel();
+		questionLabel = new JLabel("Please enter the question");
+		questionField = new JTextField(null,20);
+		aLabel = new JLabel("Option A");
+		aField = new JTextField(null,20);
+		bLabel = new JLabel("Option B");
+		bField = new JTextField(null,20);
+		questionPanel.add(questionLabel);
+		questionPanel.add(questionField);
+		questionPanel.add(aLabel);
+		questionPanel.add(aField);
+		questionPanel.add(bLabel);
+		questionPanel.add(bField);
+		
+		JPanel blank = new JPanel();
+		
+		JPanel kingPanel = new JPanel();
+		kingPanel.add(questionPanel, "add question box");
+		kingPanel.add(blank, "blank");
+		
+	//	card1.add(new JTextField("TextField",20));
+	//	questionField = new JTextField(null,20);
+	//	questionField.setBounds(110,130,80,40);
+	//	runBox.add(questionLabel);
+	//	runBox.add(questionField);
+	//	p1.add(questionLabel);
+	//	p1.add(questionField);
+		cPane.add(kingPanel, BorderLayout.PAGE_START);*/
+		
+		CardLayout c1 = (CardLayout)(kingPanel.getLayout());
+		
+		c1.show(kingPanel,"add question box");
+		
+	}//END OF TESTING METHOD
 	
 }//end class

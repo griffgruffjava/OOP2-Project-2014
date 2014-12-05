@@ -12,7 +12,7 @@ public class QuizDriver extends JFrame implements ActionListener
 	
 	public static void main(String[] args)
 	{	
-		runBox = new QuizDriver();
+		runBox = new QuizDriver("Networking Quiz");
 		runBox.setVisible(true);
 	
 	}//end main	
@@ -20,7 +20,7 @@ public class QuizDriver extends JFrame implements ActionListener
 	public QuizDriver()
 	{
 		
-		setTitle("Networking Quiz");
+		
 		setSize(500,500);
 		setLocation(300,500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

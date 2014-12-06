@@ -137,7 +137,7 @@ public class Question implements Serializable
 		for(Answer a: answers)
 		{
 			letter++;
-			output+= (char)(letter)+ ".  " + a.toStringTF() + "\n";
+			output+= (char)(letter)+ ".  " + a.toStringTF() + "\n"; 
 			
 		}//end loop
 	

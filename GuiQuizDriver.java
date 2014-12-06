@@ -67,6 +67,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		cPane = getContentPane();
 
 		// methods to add menu items
+		/*Title:JMenuFrame.java
+    	 *Author:John Walsh
+	     *date:06/11/2014 15:37
+         *Availability: X-Drive\John W\Sample Programs\Units13_15
+	     *Comment: I used this code create my Menu items
+         */
 		createPlayMenu();
 		createAdminMenu();
 
@@ -143,19 +149,38 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		holdAllPanel.setBackground(Color.BLUE);
 
 		blank = new JPanel();
-		
-	//	blank.add(new JButton("click here"));
 		blank.setBackground(Color.GREEN);
-		blankLabel = new JLabel(resultString); //http://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-the-maximum-size
+		
+		blankLabel = new JLabel(resultString); 
+	
 		blankLabel.setFont(new Font("Serif", Font.PLAIN, 54));
 		blank.add(blankLabel);
+		/*Title:How to change the size of the font of a JLabel to take the maximum size
+		 *Author:Asaf David
+		 *Date:Apr 26'10 at 16:33
+		 *Availability:http://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-the-maximum-size
+		 *Comment: I used this bit of code in order to resize my JLabel on the landing panel(blankPanel)
+		 */
+		
 		kingPanel.add(blank, "2");
 		kingPanel.add(holdAllPanel, "1");
+		/*Title: CardLayoutEX.java
+		 *Author: John Walsh
+		 *Date:02/12/2014 09:25
+		 *Availability: X-Drive\John W\Sample Programs\Multiple Panels
+		 *Comment: I  used this to deal with how to display panels at different times during runtime
+		 */
 		cPane.add(kingPanel, BorderLayout.CENTER);
 
 
 		this.add(kingPanel);
 		
+		/*Title: BicyleFrame4.java
+		 *Author:John Walsh
+		 *date:05/12/2014 12:41
+		 *Availability: X-Drive\John W\Sample Programs\Units16_18
+		 *Comment: I used this code to model my own input/output streams and to save dat files
+		 */
 		try {
 			System.out.println("made into addNewQuestion() try1");
 			ObjectInputStream is;
@@ -171,6 +196,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	}// end constructor
 
 	// my event handler method for menu items
+	/*Title:JMenuFrame.java
+	 *Author:John Walsh
+	 *date:06/11/2014 15:37
+     *Availability: X-Drive\John W\Sample Programs\Units13_15
+	 *Comment: I used this code to model my own event handling
+     */
 	public void actionPerformed(ActionEvent event) {
 		String menuName;
 		menuName = event.getActionCommand();

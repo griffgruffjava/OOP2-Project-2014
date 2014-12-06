@@ -591,8 +591,9 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 
 			int returnValue = JOptionPane.showOptionDialog(null,
 					q1.toStringFull(), "Delete Quiz Question",
-					JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[i]);
-			System.out.println(returnValue);
+					JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[i]); 
+			/*From the use of a string array for button names, until the line above, I found something on the internet to show me how
+			 * to do that but I am unable to find that code again to reference it correctly. */
 
 			if (returnValue == 0) {
 				System.out.println("into delete if");

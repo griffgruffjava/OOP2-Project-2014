@@ -1,9 +1,10 @@
-//this is the driver for the quiz gui
+//this is the gui driver for the quiz 
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,10 +14,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
-import java.awt.*;
-import javax.swing.*;
-
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,8 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class GuiQuizDriver extends JFrame implements ActionListener {
-	
-	
+
 	// global attributes needed for methods and driver
 	JPanel kingPanel, blank, holdAllPanel, questionPanel, optionsPanel, aPanel,
 			bPanel, cPanel, dPanel, ePanel, fPanel;
@@ -39,12 +35,13 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	GridLayout optionsLayout = new GridLayout(6, 3);
 	Container cPane;
 	int i = 0;
-	JLabel questionLabel, aLabel, bLabel, cLabel, dLabel, eLabel, fLabel, blankLabel;
+	JLabel questionLabel, aLabel, bLabel, cLabel, dLabel, eLabel, fLabel,
+			blankLabel;
 	JTextField questionField, aField, bField, cField, dField, eField, fField,
 			aTf, bTf, cTf, dTf, eTf, fTf;
 	boolean isCorrect, addMore = true;
 	String answer = "start", question, isCorrectString, addMoreString, choice,
-			answerKey,resultString="Welcome to the QUIZ";
+			answerKey, resultString = "Welcome to the QUIZ";
 	ArrayList<Answer> answers;
 	Answer ans;
 	Question q1;
@@ -67,12 +64,11 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		cPane = getContentPane();
 
 		// methods to add menu items
-		/*Title:JMenuFrame.java
-    	 *Author:John Walsh
-	     *date:06/11/2014 15:37
-         *Availability: X-Drive\John W\Sample Programs\Units13_15
-	     *Comment: I used this code create my Menu items
-         */
+		/*
+		 * Title:JMenuFrame.javaAuthor:John Walshdate:06/11/2014 15:37
+		 * Availability: X-Drive\John W\Sample Programs\Units13_15Comment: I
+		 * used this code create my Menu items
+		 */
 		createPlayMenu();
 		createAdminMenu();
 
@@ -88,7 +84,6 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		questionPanel = new JPanel();
 		questionLabel = new JLabel("Please enter the question");
 		questionField = new JTextField(null, 50);
-		questionField.grabFocus();
 		questionPanel.add(questionLabel);
 		questionPanel.add(questionField);
 
@@ -116,7 +111,6 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		fField = new JTextField(null, 20);
 		fTf = new JTextField("True/False", 10);
 
-		
 		optionsPanel = new JPanel();
 		optionsPanel.setLayout(optionsLayout);
 		optionsPanel.add(aLabel);
@@ -137,12 +131,11 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		optionsPanel.add(fLabel);
 		optionsPanel.add(fField);
 		optionsPanel.add(fTf);
-		
 
 		holdAllPanel = new JPanel();
 		JButton submit = new JButton("Submit Question");
 		submit.addActionListener(this);
-		
+
 		holdAllPanel.add(questionPanel);
 		holdAllPanel.add(optionsPanel);
 		holdAllPanel.add(submit);
@@ -150,36 +143,38 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 
 		blank = new JPanel();
 		blank.setBackground(Color.GREEN);
-		
-		blankLabel = new JLabel(resultString); 
-	
+
+		blankLabel = new JLabel(resultString);
+
 		blankLabel.setFont(new Font("Serif", Font.PLAIN, 54));
 		blank.add(blankLabel);
-		/*Title:How to change the size of the font of a JLabel to take the maximum size
-		 *Author:Asaf David
-		 *Date:Apr 26'10 at 16:33
-		 *Availability:http://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-the-maximum-size
-		 *Comment: I used this bit of code in order to resize my JLabel on the landing panel(blankPanel)
+		/*
+		 * Title:How to change the size of the font of a JLabel to take the
+		 * maximum sizeAuthor:Asaf DavidDate:Apr 26'10 at 16:33
+		 * Availability:http:
+		 * //stackoverflow.com/questions/2715118/how-to-change-
+		 * the-size-of-the-font-of-a-jlabel-to-take-the-maximum-sizeComment: I
+		 * used this bit of code in order to resize my JLabel on the landing
+		 * panel(blankPanel)
 		 */
-		
+
 		kingPanel.add(blank, "2");
 		kingPanel.add(holdAllPanel, "1");
-		/*Title: CardLayoutEX.java
-		 *Author: John Walsh
-		 *Date:02/12/2014 09:25
-		 *Availability: X-Drive\John W\Sample Programs\Multiple Panels
-		 *Comment: I  used this to deal with how to display panels at different times during runtime
+		/*
+		 * Title: CardLayoutEX.javaAuthor: John WalshDate:02/12/2014 09:25
+		 * Availability: X-Drive\John W\Sample Programs\Multiple PanelsComment:
+		 * I used this to deal with how to display panels at different times
+		 * during runtime
 		 */
 		cPane.add(kingPanel, BorderLayout.CENTER);
 
-
 		this.add(kingPanel);
-		
-		/*Title: BicyleFrame4.java
-		 *Author:John Walsh
-		 *date:05/12/2014 12:41
-		 *Availability: X-Drive\John W\Sample Programs\Units16_18
-		 *Comment: I used this code to model my own input/output streams and to save dat files
+
+		/*
+		 * Title: BicyleFrame4.javaAuthor:John Walshdate:05/12/2014 12:41
+		 * Availability: X-Drive\John W\Sample Programs\Units16_18Comment: I
+		 * used this code to model my own input/output streams and to save dat
+		 * files
 		 */
 		try {
 			System.out.println("made into addNewQuestion() try1");
@@ -191,45 +186,47 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			System.out.println("made into addNewQuestion() catch1");
 			// this is left empty to prevent exceptions being displayed in
 			// output
-		} 
+		}
 
 	}// end constructor
 
 	// my event handler method for menu items
-	/*Title:JMenuFrame.java
-	 *Author:John Walsh
-	 *date:06/11/2014 15:37
-     *Availability: X-Drive\John W\Sample Programs\Units13_15
-	 *Comment: I used this code to model my own event handling
-     */
+	/*
+	 * Title:JMenuFrame.javaAuthor:John Walshdate:06/11/2014 15:37Availability:
+	 * X-Drive\John W\Sample Programs\Units13_15Comment: I used this code to
+	 * model my own event handling
+	 */
 	public void actionPerformed(ActionEvent event) {
 		String menuName;
 		menuName = event.getActionCommand();
 
 		if (menuName.equals("10 Questions")) {
-			 try {
+			try {
 				take10Quiz();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (menuName.equals("25 Questions")) {
 
-			System.out.println("25 Questions");
-			
-		} else if (menuName.equals("50 Questions")) {
-			JOptionPane.showMessageDialog(null, "you picked 50 quesitons",
-					"test response", JOptionPane.PLAIN_MESSAGE);
+			try {
+				take25Quiz();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		} else if (menuName.equals("Every Question")) {
 			try {
 				takeQuiz();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (menuName.equals("Add Question")) {
-
+			resultString = "Welcome to the QUIZ";
+			blankLabel.setText(resultString);
 			newQuestionForm();
 
 		} else if (menuName.equals("Edit Question")) {
-			
+
 			try {
 				deleteQuestion();
 			} catch (IOException e) {
@@ -240,11 +237,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			resultString = "Welcome to the QUIZ";
+			blankLabel.setText(resultString);
 		} else if (menuName.equals("Submit Question")) {
-			
+
 			try {
 				addNewQuestion();
-				System.out.print("made it to try");
 			} // end try
 			catch (IOException f) {
 				System.out.print("Not able to save the file:\n"
@@ -253,7 +251,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			}// end catch
 		} else {
 			System.exit(0);
-		}
+		}// end of if else statements
 	}// end action handler
 
 	// method to create PlayMenu items
@@ -269,7 +267,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		item.addActionListener(this);
 		playMenu.add(item);
 
-		item = new JMenuItem("50 Questions");
+		item = new JMenuItem("Every Question");
 		item.addActionListener(this);
 		playMenu.add(item);
 
@@ -297,53 +295,32 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	}// end createAdminMenu method
 
 	private void newQuestionForm() {
-
-		System.out.println("made into test method");
 		c1.show(kingPanel, "1");
+		questionField.grabFocus();
 
 	}// END OF TESTING METHOD
 
+	// addNewQuestion is method to allow user to add questions to the quiz and
+	// set the options to T/F
 	private void addNewQuestion() throws IOException {
 
-	/*	try {
-			System.out.println("made into addNewQuestion() try1");
-			ObjectInputStream is;
-			is = new ObjectInputStream(new FileInputStream("allQuestion.dat"));
-			questions = (ArrayList<Question>) is.readObject();
-			is.close();
-		} catch (Exception e) {
-			System.out.println("made into addNewQuestion() catch1");
-			// this is left empty to prevent exceptions being displayed in
-			// output
-		} */
-
-	/*	c1.show(kingPanel, "1");
-		System.out.println("made it here B");
-		answers = new ArrayList<Answer>(); */
-		question = questionField.getText(); 
-		questionField.setText("");	
-		System.out.println("made into addNewQuestion() before intakeOptions()");
+		question = questionField.getText();
+		questionField.setText("");
 		intakeOptions();
-		System.out.println("made into addNewQuestion() after intakeOptions()");
 		q1 = new Question(question, answers);
-		questions.add(q1); 
+		questions.add(q1);
 
 		try {
 			save();// method to save questions ArrayList to dat file
-			System.out.println("made into addNewQuestion() try2 and question has been saved");
 		} // try
 		catch (IOException f) {
-			System.out.println("made into addNewQuestion() catch2");
 			f.printStackTrace();
 		}// catch
 
+		resultString = "Welcome to the QUIZ";
 		c1.show(kingPanel, "2");
 
-		
-
 	}// end of addNewQuestions method
-	
-	
 
 	// method to write questions ArryList to dat file
 	public void save() throws IOException {
@@ -352,11 +329,9 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		os.writeObject(questions);
 		os.close();
 	}
-	
-	
 
+	// this method will ask the user every question
 	private void takeQuiz() throws IOException {
-
 
 		// staring test quiz
 		int n = 0;
@@ -373,55 +348,96 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			totalQuestion++;
 			n++;
 		}
-		resultString="You scored " +String.format("%.0f",((totalRight / totalQuestion) * 100))+"%"; // String.format("$%.2f",creditLimit) +String.format("%.1f",((totalRight / totalQuestion) * 100)+"%");
+		resultString = "You scored "
+				+ String.format("%.0f", ((totalRight / totalQuestion) * 100))
+				+ "%";
 		blankLabel.setText(resultString);
-	/*	JOptionPane.showMessageDialog(null, "You scored "
-				+ ((totalRight / totalQuestion) * 100) + "% on this quiz",
-				"Quiz Results", JOptionPane.INFORMATION_MESSAGE); */
-		
-		
+
 	}// end takeQuiz() method
-	
+
 	// 10 question quiz method
 	private void take10Quiz() throws IOException {
-		
-		//to keep track of used questions
-		int[] used = new int[10];
+
+		// to keep track of used questions
+		ArrayList<Integer> used = new ArrayList<Integer>();
 		double totalRight = 0;
 		int randomNum;
-		
-		
-		for(int h=0;h<10;h++)
-		{
-			
-			randomNum=(int)(Math.random()*questions.size());
-			System.out.print(randomNum);
-				
-				for(int y=0;y<=h;y++)
-				{
-					if(randomNum==used[y])
-						randomNum=(int)Math.random()*answers.size();
+		// String myNums="";
+
+		if (questions.size() >= 10) {
+			randomNum = (int) (Math.random() * questions.size());
+			used.add(randomNum);
+
+			for (int h = 0; h < 10; h++) {
+				for (int y = 0; y < h; y++) {
+					while (used.contains(randomNum)) {
+						randomNum = (int) (Math.random() * questions.size());
+						System.out.println(randomNum);
+					}
 				}
-		
-		
 
-			q1=questions.get(randomNum);
+				used.add(randomNum);
+				q1 = questions.get(randomNum);
 
-			choice = JOptionPane.showInputDialog(q1.toString()
-					+ "\n\nYour Answer");
+				choice = JOptionPane.showInputDialog(q1.toString()
+						+ "\n\nYour Answer");
+				answerKey = q1.getKey();
+				totalRight += scoreAnswers(answerKey, choice);
 
-			totalRight += scoreAnswers(answerKey, choice);
-			
-			
-		}
-		resultString="You scored " +String.format("%.0f",((totalRight/10) * 100))+"%"; 
-		blankLabel.setText(resultString);
-	/*	JOptionPane.showMessageDialog(null, "You scored "
-				+ ((totalRight / totalQuestion) * 100) + "% on this quiz",
-				"Quiz Results", JOptionPane.INFORMATION_MESSAGE); */
-		
-		
+				// myNums+=randomNum; to test that numbers are not being
+				// repeated
+
+			}
+			// System.out.print(myNums);
+			resultString = "You scored "
+					+ String.format("%.0f", ((totalRight / 10) * 100)) + "%";
+			blankLabel.setText(resultString);
+		} else
+			JOptionPane.showMessageDialog(null,
+					"There are not enough questions stored to take this Quiz",
+					"", JOptionPane.WARNING_MESSAGE);
+
 	}// end take10Quiz() method
+
+	// 25 question quiz method
+	private void take25Quiz() throws IOException {
+
+		// to keep track of used questions
+		ArrayList<Integer> used = new ArrayList<Integer>();
+		double totalRight = 0;
+		int randomNum;
+
+		if (questions.size() >= 25) {
+			randomNum = (int) (Math.random() * questions.size());
+			used.add(randomNum);
+
+			for (int h = 0; h < 25; h++) {
+				for (int y = 0; y < h; y++) {
+
+					while (used.contains(randomNum)) {
+						randomNum = (int) (Math.random() * questions.size());
+						System.out.println(randomNum);
+					}
+				}
+
+				used.add(randomNum);
+				q1 = questions.get(randomNum);
+
+				choice = JOptionPane.showInputDialog(q1.toString()
+						+ "\n\nYour Answer");
+				answerKey = q1.getKey();
+				totalRight += scoreAnswers(answerKey, choice);
+
+			}
+			resultString = "You scored "
+					+ String.format("%.0f", ((totalRight / 25) * 100)) + "%";
+			blankLabel.setText(resultString);
+		} else
+			JOptionPane.showMessageDialog(null,
+					"There are not enough questions stored to take this Quiz",
+					"", JOptionPane.WARNING_MESSAGE);
+
+	}// end take25Quiz() method
 
 	// this method will tabulate the score for takeQuiz method
 	public static double scoreAnswers(String key, String choices) {
@@ -433,6 +449,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			return questionScore;
 		} else {
 			for (int i = 0; i < choices.length(); i++) {
+				choices = choices.toUpperCase();
 				pick = choices.charAt(i);
 
 				for (int n = 0; n < key.length(); n++) {
@@ -449,32 +466,31 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	}// end scoreAnswers() method
 
 	private void intakeOptions() {
-		String answerA,answerB,answerC,answerD,answerE,answerF;
+		String answerA, answerB, answerC, answerD, answerE, answerF;
 		answers = new ArrayList<Answer>();
 		answerA = aField.getText();
 		aField.setText("");
 
 		if (!answerA.equals("")) {
-			
+
 			isCorrectString = aTf.getText();
 			aTf.setText("True/False");
-			
+
 			if (isCorrectString.charAt(0) == 'f'
 					|| isCorrectString.charAt(0) == 'F')
 				isCorrect = false;
 			else
 				isCorrect = true;
-			
+
 			ans = new Answer(answerA, isCorrect);
-			answers.add(ans);	
+			answers.add(ans);
 		}
 
 		answerB = bField.getText();
 		bField.setText("");
 
 		if (!answerB.equals("")) {
-			
-			
+
 			isCorrectString = bTf.getText();
 			bTf.setText("True/False");
 
@@ -486,15 +502,14 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 
 			ans = new Answer(answerB, isCorrect);
 			answers.add(ans);
-			
+
 		}
 
 		answerC = cField.getText();
 		cField.setText("");
 
 		if (!answerC.equals("")) {
-			
-		
+
 			isCorrectString = cTf.getText();
 			cTf.setText("True/False");
 
@@ -506,14 +521,14 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 
 			ans = new Answer(answerC, isCorrect);
 			answers.add(ans);
-			
+
 		}
 
 		answerD = dField.getText();
 		dField.setText("");
 
 		if (!answerD.equals("")) {
-			
+
 			isCorrectString = dTf.getText();
 			dTf.setText("True/False");
 
@@ -525,14 +540,14 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 
 			ans = new Answer(answerD, isCorrect);
 			answers.add(ans);
-			
+
 		}
 
 		answerE = eField.getText();
 		eField.setText("");
 
 		if (!answerE.equals("")) {
-			
+
 			isCorrectString = eTf.getText();
 			eTf.setText("True/False");
 
@@ -550,7 +565,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		fField.setText("");
 
 		if (!answerF.equals("")) {
-			
+
 			isCorrectString = fTf.getText();
 			fTf.setText("True/False");
 
@@ -563,38 +578,28 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			ans = new Answer(answerF, isCorrect);
 			answers.add(ans);
 		}
-		
-		
 
 	}// end of intake method
-	
-	public void deleteQuestion() throws IOException
-	{
-		
 
-		
-		System.out.println("made it into deleteQuestion method");
-		
-		String[] buttons = { "Delete Question", "Keep Question"};
-		
-		for(int g=0;g<questions.size();g++)
-		{
-			
+	public void deleteQuestion() throws IOException {
+
+		String[] buttons = { "Delete Question", "Keep Question" };
+
+		for (int g = 0; g < questions.size(); g++) {
+
 			q1 = questions.get(g);
-		    
-			int returnValue = JOptionPane.showOptionDialog(null, q1.toStringFull(), "Delete Quiz Question",JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[i]);
+
+			int returnValue = JOptionPane.showOptionDialog(null,
+					q1.toStringFull(), "Delete Quiz Question",
+					JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[i]);
 			System.out.println(returnValue);
-			
-			if(returnValue==0)
-			{
+
+			if (returnValue == 0) {
 				System.out.println("into delete if");
 				questions.remove(g);
-			} 
-			
-			
+			}
 		}
-		
-		
-	}//end deleteQuestion method
+
+	}// end deleteQuestion method
 
 }// end class	

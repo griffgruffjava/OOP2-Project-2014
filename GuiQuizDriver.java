@@ -207,9 +207,11 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		menuName = event.getActionCommand();
 
 		if (menuName.equals("10 Questions")) {
-			JOptionPane.showMessageDialog(null, "you picked 10 quesitons",
-					"test response", JOptionPane.PLAIN_MESSAGE);
-			// takeQuiz();
+			 try {
+				take10Quiz();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else if (menuName.equals("25 Questions")) {
 
 			System.out.println("25 Questions");
@@ -380,25 +382,39 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		
 	}// end takeQuiz() method
 	
+	// 10 question quiz method
 	private void take10Quiz() throws IOException {
+		
+		//to keep track of used questions
+		int[] used = new int[10];
+		double totalRight = 0;
+		int randomNum;
+		
+		
+		for(int h=0;h<10;h++)
+		{
+			
+			randomNum=(int)(Math.random()*questions.size());
+			System.out.print(randomNum);
+				
+				for(int y=0;y<=h;y++)
+				{
+					if(randomNum==used[y])
+						randomNum=(int)Math.random()*answers.size();
+				}
+		
+		
 
-
-		// staring test quiz
-		int n = 0;
-		double totalRight = 0, totalQuestion = 0;
-
-		for (Question q1 : questions) {
-			q1 = questions.get(n);
-			answerKey = q1.getKey();
+			q1=questions.get(randomNum);
 
 			choice = JOptionPane.showInputDialog(q1.toString()
 					+ "\n\nYour Answer");
 
 			totalRight += scoreAnswers(answerKey, choice);
-			totalQuestion++;
-			n++;
+			
+			
 		}
-		resultString="You scored " +String.format("%.0f",((totalRight / totalQuestion) * 100))+"%"; // String.format("$%.2f",creditLimit) +String.format("%.1f",((totalRight / totalQuestion) * 100)+"%");
+		resultString="You scored " +String.format("%.0f",((totalRight/10) * 100))+"%"; 
 		blankLabel.setText(resultString);
 	/*	JOptionPane.showMessageDialog(null, "You scored "
 				+ ((totalRight / totalQuestion) * 100) + "% on this quiz",

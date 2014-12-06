@@ -14,6 +14,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import java.awt.*;
+import javax.swing.*;
+
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,12 +39,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	GridLayout optionsLayout = new GridLayout(6, 3);
 	Container cPane;
 	int i = 0;
-	JLabel questionLabel, aLabel, bLabel, cLabel, dLabel, eLabel, fLabel;
+	JLabel questionLabel, aLabel, bLabel, cLabel, dLabel, eLabel, fLabel, blankLabel;
 	JTextField questionField, aField, bField, cField, dField, eField, fField,
 			aTf, bTf, cTf, dTf, eTf, fTf;
 	boolean isCorrect, addMore = true;
 	String answer = "start", question, isCorrectString, addMoreString, choice,
-			answerKey;
+			answerKey,resultString="Welcome to the QUIZ";
 	ArrayList<Answer> answers;
 	Answer ans;
 	Question q1;
@@ -78,6 +82,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		questionPanel = new JPanel();
 		questionLabel = new JLabel("Please enter the question");
 		questionField = new JTextField(null, 50);
+		questionField.grabFocus();
 		questionPanel.add(questionLabel);
 		questionPanel.add(questionField);
 
@@ -138,9 +143,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		holdAllPanel.setBackground(Color.BLUE);
 
 		blank = new JPanel();
-		blank.add(new JButton("click here"));
+		
+	//	blank.add(new JButton("click here"));
 		blank.setBackground(Color.GREEN);
-
+		blankLabel = new JLabel(resultString); //http://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-the-maximum-size
+		blankLabel.setFont(new Font("Serif", Font.PLAIN, 54));
+		blank.add(blankLabel);
 		kingPanel.add(blank, "2");
 		kingPanel.add(holdAllPanel, "1");
 		cPane.add(kingPanel, BorderLayout.CENTER);
@@ -185,13 +193,10 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			}
 		} else if (menuName.equals("Add Question")) {
 
-			System.out.println("you choose Add question menu item");
 			newQuestionForm();
 
 		} else if (menuName.equals("Edit Question")) {
-			JOptionPane.showMessageDialog(null,
-					"you picked to edit a question", "test response",
-					JOptionPane.PLAIN_MESSAGE);
+			
 			try {
 				deleteQuestion();
 			} catch (IOException e) {
@@ -203,9 +208,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		} else if (menuName.equals("Submit Question")) {
-			JOptionPane.showMessageDialog(null,
-					"you picked to edit a question", "test response",
-					JOptionPane.PLAIN_MESSAGE);
+			
 			try {
 				addNewQuestion();
 				System.out.print("made it to try");
@@ -285,6 +288,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		System.out.println("made it here B");
 		answers = new ArrayList<Answer>(); */
 		question = questionField.getText(); 
+		questionField.setText("");	
 		System.out.println("made into addNewQuestion() before intakeOptions()");
 		intakeOptions();
 		System.out.println("made into addNewQuestion() after intakeOptions()");
@@ -336,13 +340,41 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			totalQuestion++;
 			n++;
 		}
-
-		JOptionPane.showMessageDialog(null, "You scored "
+		resultString="You scored " +String.format("%.0f",((totalRight / totalQuestion) * 100))+"%"; // String.format("$%.2f",creditLimit) +String.format("%.1f",((totalRight / totalQuestion) * 100)+"%");
+		blankLabel.setText(resultString);
+	/*	JOptionPane.showMessageDialog(null, "You scored "
 				+ ((totalRight / totalQuestion) * 100) + "% on this quiz",
-				"Quiz Results", JOptionPane.INFORMATION_MESSAGE);
+				"Quiz Results", JOptionPane.INFORMATION_MESSAGE); */
 		
 		
 	}// end takeQuiz() method
+	
+	private void take10Quiz() throws IOException {
+
+
+		// staring test quiz
+		int n = 0;
+		double totalRight = 0, totalQuestion = 0;
+
+		for (Question q1 : questions) {
+			q1 = questions.get(n);
+			answerKey = q1.getKey();
+
+			choice = JOptionPane.showInputDialog(q1.toString()
+					+ "\n\nYour Answer");
+
+			totalRight += scoreAnswers(answerKey, choice);
+			totalQuestion++;
+			n++;
+		}
+		resultString="You scored " +String.format("%.0f",((totalRight / totalQuestion) * 100))+"%"; // String.format("$%.2f",creditLimit) +String.format("%.1f",((totalRight / totalQuestion) * 100)+"%");
+		blankLabel.setText(resultString);
+	/*	JOptionPane.showMessageDialog(null, "You scored "
+				+ ((totalRight / totalQuestion) * 100) + "% on this quiz",
+				"Quiz Results", JOptionPane.INFORMATION_MESSAGE); */
+		
+		
+	}// end take10Quiz() method
 
 	// this method will tabulate the score for takeQuiz method
 	public static double scoreAnswers(String key, String choices) {
@@ -373,11 +405,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		String answerA,answerB,answerC,answerD,answerE,answerF;
 		answers = new ArrayList<Answer>();
 		answerA = aField.getText();
-	
+		aField.setText("");
 
 		if (!answerA.equals("")) {
 			
 			isCorrectString = aTf.getText();
+			aTf.setText("True/False");
 			
 			if (isCorrectString.charAt(0) == 'f'
 					|| isCorrectString.charAt(0) == 'F')
@@ -390,11 +423,13 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		}
 
 		answerB = bField.getText();
+		bField.setText("");
 
 		if (!answerB.equals("")) {
 			
 			
 			isCorrectString = bTf.getText();
+			bTf.setText("True/False");
 
 			if (isCorrectString.charAt(0) == 'f'
 					|| isCorrectString.charAt(0) == 'F')
@@ -408,11 +443,13 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		}
 
 		answerC = cField.getText();
+		cField.setText("");
 
 		if (!answerC.equals("")) {
 			
 		
 			isCorrectString = cTf.getText();
+			cTf.setText("True/False");
 
 			if (isCorrectString.charAt(0) == 'f'
 					|| isCorrectString.charAt(0) == 'F')
@@ -426,10 +463,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		}
 
 		answerD = dField.getText();
+		dField.setText("");
 
 		if (!answerD.equals("")) {
 			
 			isCorrectString = dTf.getText();
+			dTf.setText("True/False");
 
 			if (isCorrectString.charAt(0) == 'f'
 					|| isCorrectString.charAt(0) == 'F')
@@ -443,10 +482,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		}
 
 		answerE = eField.getText();
+		eField.setText("");
 
 		if (!answerE.equals("")) {
 			
 			isCorrectString = eTf.getText();
+			eTf.setText("True/False");
 
 			if (isCorrectString.charAt(0) == 'f'
 					|| isCorrectString.charAt(0) == 'F')
@@ -459,10 +500,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 		}
 
 		answerF = fField.getText();
+		fField.setText("");
 
 		if (!answerF.equals("")) {
-			System.out.println("in f");
+			
 			isCorrectString = fTf.getText();
+			fTf.setText("True/False");
 
 			if (isCorrectString.charAt(0) == 'f'
 					|| isCorrectString.charAt(0) == 'F')

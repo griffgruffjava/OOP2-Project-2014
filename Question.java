@@ -1,6 +1,11 @@
 //Question.java
 //This is the Question class that will be used by the driver
 
+
+/**This is an instantiable Question class.
+ *@author Ciaran Griffin
+ *@version 1.0*/
+
 import java.io.*;
 import java.util.*;
 
@@ -14,14 +19,15 @@ public class Question implements Serializable
 	
 	
 	//constructor
-	
+	/**no argument constructor method */
 	public Question()
 	{
 		setQuestion(question);
 		setAns(answers);
 		setKey(answerKey);
 	}
-	
+	/** two argument constructor method
+	 *@param question is  the question string and @param answers is an ArrayList of the class Answer*/
 	public Question(String question,ArrayList<Answer> answers)
 	{
 		setQuestion(question);
@@ -31,18 +37,23 @@ public class Question implements Serializable
 	
 	
 	//mutator methods
+	/**mutator method to set the question 
+	*@param question the question */
 	
 	public void setQuestion(String question)
 	{
 		this.question=question;
 	}
 	
+	/**mutator method to set the answers ArrayList 
+	 *@param answers ArrayList of Answer class*/
 	public void setAns(ArrayList answers)
 	{
-		//Answer ans = new Answer("is this working",true);
-		//answers.add(ans);
 		this.answers=answers;
 	}
+	
+	/**mutator method to set the answerKey for this question 
+	 *@param answerKey answerKey as String*/
 	
 	public void setKey(String answerKey)
 	{
@@ -51,15 +62,25 @@ public class Question implements Serializable
 	
 	//accessor methods
 	
+	/**acessor method to return the question String
+	*@return question the question */
+	
 	public String getQuestion()
 	{
 		return question;
 	}
 	
+	/**acessor method to return the answers ArrayList
+	*@return answers ArrayList of Answer class */
+	
 	public ArrayList getAns()
 	{
 		return answers;
 	}
+	
+	
+	/**acessor method to return answerKey as String
+	*@return answerKey answerKey as String */
 	
 	public String getKey()
 	{
@@ -77,6 +98,9 @@ public class Question implements Serializable
 	
 	
 	//toString Method- no t/f
+	
+	/**toString method to return the question and options as one String
+	 *@return output the question and options as String  */
 	
 	public String toString()
 	{
@@ -99,6 +123,9 @@ public class Question implements Serializable
 	
 	//toStringFull method with t/f
 	
+	/**toString method to return the question, options and True/False value as one String
+	 *@return output the question and options as String */
+	
 	public String toStringFull()
 	{
 		char letter='@';
@@ -113,7 +140,7 @@ public class Question implements Serializable
 			output+= (char)(letter)+ ".  " + a.toStringTF() + "\n";
 			
 		}//end loop
-	//	letter='@';    did not work
+	
 		return output;
 		
 	}//end toStringFull

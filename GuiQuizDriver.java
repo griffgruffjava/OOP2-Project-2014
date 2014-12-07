@@ -323,7 +323,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	}// end of addNewQuestions method
 
 	// method to write questions ArryList to dat file
-	public void save() throws IOException {
+	private void save() throws IOException {
 		ObjectOutputStream os;
 		os = new ObjectOutputStream(new FileOutputStream("allQuestion.dat"));
 		os.writeObject(questions);
@@ -440,7 +440,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	}// end take25Quiz() method
 
 	// this method will tabulate the score for takeQuiz method
-	public static double scoreAnswers(String key, String choices) {
+	private static double scoreAnswers(String key, String choices) {
 		int outOf = key.length();
 		double questionScore = 0, score = 0;
 		char pick;
@@ -581,7 +581,7 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 
 	}// end of intake method
 
-	public void deleteQuestion() throws IOException {
+	private void deleteQuestion() throws IOException {
 
 		String[] buttons = { "Delete Question", "Keep Question" };
 

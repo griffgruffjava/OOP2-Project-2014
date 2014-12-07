@@ -592,8 +592,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			int returnValue = JOptionPane.showOptionDialog(null,
 					q1.toStringFull(), "Delete Quiz Question",
 					JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[i]); 
-			/*From the use of a string array for button names, until the line above, I found something on the internet to show me how
-			 * to do that but I am unable to find that code again to reference it correctly. */
+			/*Title:JOptionPane with multiple buttons on each line?
+			 * Author:mKorbel
+			 * Date:Dec 28 '11 at 16:44
+			 * Availability:http://stackoverflow.com/questions/8658576/joptionpane-with-multiple-buttons-on-each-line
+			 * Comment: I used this code create my 2 buttom JOP with 'keep' or 'delete'
+			 *  */
 
 			if (returnValue == 0) {
 				System.out.println("into delete if");

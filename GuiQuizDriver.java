@@ -28,8 +28,17 @@ import javax.swing.JTextField;
 public class GuiQuizDriver extends JFrame implements ActionListener {
 
 	// global attributes needed for methods and driver
-	JPanel kingPanel, blank, holdAllPanel, questionPanel, optionsPanel, aPanel,
-			bPanel, cPanel, dPanel, ePanel, fPanel;
+	JPanel kingPanel;
+	JPanel blank; 
+	JPanel holdAllPanel;
+	JPanel questionPanel;
+	JPanel optionsPanel;
+	JPanel aPanel;
+	JPanel bPanel;
+	JPanel cPanel;
+	JPanel dPanel;
+	JPanel ePanel;
+	JPanel fPanel;
 	JMenu playMenu, adminMenu;
 	CardLayout c1 = new CardLayout();
 	GridLayout optionsLayout = new GridLayout(6, 3);
@@ -324,6 +333,13 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 
 	// method to write questions ArryList to dat file
 	private void save() throws IOException {
+		
+		/*
+		 * Title: BicyleFrame4.javaAuthor:John Walshdate:05/12/2014 12:41
+		 * Availability: X-Drive\John W\Sample Programs\Units16_18Comment: I
+		 * used this code to model my own input/output streams and to save dat
+		 * files
+		 */
 		ObjectOutputStream os;
 		os = new ObjectOutputStream(new FileOutputStream("allQuestion.dat"));
 		os.writeObject(questions);

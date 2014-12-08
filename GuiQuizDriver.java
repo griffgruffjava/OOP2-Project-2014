@@ -39,18 +39,41 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 	JPanel dPanel;
 	JPanel ePanel;
 	JPanel fPanel;
-	JMenu playMenu, adminMenu;
+	JMenu playMenu;
+	JMenu adminMenu;
 	CardLayout c1 = new CardLayout();
 	GridLayout optionsLayout = new GridLayout(6, 3);
 	Container cPane;
 	int i = 0;
-	JLabel questionLabel, aLabel, bLabel, cLabel, dLabel, eLabel, fLabel,
-			blankLabel;
-	JTextField questionField, aField, bField, cField, dField, eField, fField,
-			aTf, bTf, cTf, dTf, eTf, fTf;
+	JLabel questionLabel; 
+	JLabel aLabel;
+	JLabel bLabel;
+	JLabel cLabel; 
+	JLabel dLabel; 
+	JLabel eLabel; 
+	JLabel fLabel;
+	JLabel blankLabel;
+	JTextField questionField;
+	JTextField aField;
+	JTextField bField;
+	JTextField cField;
+	JTextField dField;
+	JTextField eField;
+	JTextField fField;
+	JTextField aTf;
+	JTextField bTf;
+	JTextField cTf;
+	JTextField dTf;
+	JTextField eTf;
+	JTextField fTf;
 	boolean isCorrect, addMore = true;
-	String answer = "start", question, isCorrectString, addMoreString, choice,
-			answerKey, resultString = "Welcome to the QUIZ";
+	String answer = "start";
+	String question;
+	String isCorrectString;
+	String addMoreString;
+	String choice;
+	String answerKey;
+	String resultString = "Welcome to the QUIZ";
 	ArrayList<Answer> answers;
 	Answer ans;
 	Question q1;

@@ -407,9 +407,12 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			randomNum = (int) (Math.random() * questions.size());
 			used.add(randomNum);
 
-			for (int h = 0; h < 10; h++) {
-				for (int y = 0; y < h; y++) {
-					while (used.contains(randomNum)) {
+			for (int h = 0; h < 10; h++) 
+			{
+				for (int y = 0; y < h; y++) 
+				{
+					while (used.contains(randomNum)) 
+					{
 						randomNum = (int) (Math.random() * questions.size());
 						System.out.println(randomNum);
 					}
@@ -421,8 +424,18 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 				choice = JOptionPane.showInputDialog(q1.toString()
 						+ "\n\nYour Answer");
 				answerKey = q1.getKey();
-				totalRight += scoreAnswers(answerKey, choice);
-
+				
+				double questionMark= scoreAnswers(answerKey, choice);
+				totalRight += questionMark;
+				
+				if(questionMark<1)
+				{
+					JOptionPane.showMessageDialog(null, "Incorrect \n"+q1.toString()+"\nCorrect Answers - "+answerKey+ "\nYour score on this question is "+questionMark,"Answer for Question",JOptionPane.WARNING_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Correct");
+				}
 				// myNums+=randomNum; to test that numbers are not being
 				// repeated
 
@@ -498,6 +511,21 @@ public class GuiQuizDriver extends JFrame implements ActionListener {
 			}
 
 			questionScore = (score / outOf);
+			
+			/*
+			if(questionScore==1)
+			{
+				JOptionPane.showMessageDialog(null,"Correct!!","Question Score",JOptionPane.INFORMATION_MESSAGE);
+			}
+			else if(questionScore==0)
+			{
+				JOptionPane.showMessageDialog(null,"Incorrect!! You failed to get any correct answer. The correct answers were " +key,"Question Score",JOptionPane.WARNING_MESSAGE);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null,"Incorrect!! You failed to get any correct answer. The correct response was " +key,"Question Score",JOptionPane.WARNING_MESSAGE);
+			}*/
+			
 		}// end if/else
 
 		return questionScore;
